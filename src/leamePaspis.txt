@@ -1,0 +1,49 @@
+---- Instalacion Paquetes ----
+
+npm i @fortawesome/fontawesome-free
+npm i bootstrap
+npm i react-router-dom
+npm i react-bootstrap
+
+npm i react-toastify
+npm i jssha
+npm i jwt-decode
+
+
+---- Agregar los estilos y fuinciones en el index.tsx ----
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import '@fortawesome/fontawesome-free/css/all.min.css'
+
+---- Cambiar el puerto de depliegue en el package.json ----
+  "scripts": {
+    "start": "set PORT=8093 && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+
+---- En la carpeta myHoocks agregar en useFormulario.tsx ----
+import { useState , ChangeEvent} from "react";
+
+export const useFormulario = <T extends Object>(objInicial :T) => {
+    const[objetito, setObjetito] = useState(objInicial);
+
+    const dobleEnlace = ({target}:ChangeEvent<any>)  =>{
+        const {name, value} = target;
+        setObjetito({
+            ...objetito,
+            [name]:value
+        })
+    }
+            
+    return{
+        objetito,
+        dobleEnlace,
+        ...objetito
+    }            
+    
+};
+
+---- En la carpeta functions agregar el convertirBase64.tsx ----
